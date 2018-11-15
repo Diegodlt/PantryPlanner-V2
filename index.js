@@ -2,7 +2,8 @@ let express = require('express'),
     mongoose = require('mongoose'),
     bodyParser = require("body-parser"),
     request = require('request'),
-    pantryRoutes = require('./routes/pantry.js');
+    pantryRoutes = require('./routes/pantry.js'),
+    favoritesRoutes = require('./routes/favorites.js');
     
     
 let app = express();
@@ -11,18 +12,8 @@ app.use(express.static(__dirname + "/public"));
 
 
 mongoose.connect("mongodb://localhost:27017/pantry-planner", {useNewUrlParser: true});
-
+//mongoose.connect(process.env.DATABASEURL, {useNewUrlParser: true});
 app.use(bodyParser.urlencoded({extended: true}));
-
-
-let favoriteRecipeSchema ={
-    label : String,
-    image : String,
-    ingredients: [],
-    url: String
-}
-
-let FavoriteRecipe= mongoose.model("FavoriteRecipe", favoriteRecipeSchema);
 
 
 app.get("/", function(req,res){
@@ -63,43 +54,11 @@ app.post("/search",function(req,res){
 });
 
 
-//              FAVORITES ROUTES
+//  FAVORITES ROUTES
+app.use("/favorites", favoritesRoutes);
 
-
-app.get("/favorites", function(req,res){
-    FavoriteRecipe.find({}, function(err, favoriteItems){
-        if(err){
-            res.redirect("/");
-        }else{
-            res.render("favorites",{favoriteItems:favoriteItems})
-        }
-    })
-})
-
-
-app.post('/favorites',function(req,res){
-    FavoriteRecipe.create(req.body,function(err, newItem){
-        if(err){
-            console.log("error in /favorites POST")
-        }else{
-            console.log(newItem);
-        }
-    })
-    
-});
-
-app.delete('/favorites/:id',function(req,res){
-    FavoriteRecipe.findByIdAndRemove(req.params.id, function(err){
-        if(err){
-            res.redirect("/")
-        }else{
-            res.end();
-        }
-    });
-})
 
 // PANTRY ROUTES
-
 app.use("/pantry",pantryRoutes);
 
 

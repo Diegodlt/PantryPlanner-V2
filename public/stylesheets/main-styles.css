@@ -220,7 +220,6 @@ input[class="search"]{
             
 *************************************/
 
-
 .favorite-item{
     position: relative;
     height: 400px;
@@ -247,6 +246,7 @@ input[class="search"]{
 .favorite-item ul{
     width: 50%;
     float: right;
+    margin-right: 10%;
 }
 
 .favorite-item .item-buttons{
