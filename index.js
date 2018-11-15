@@ -86,6 +86,16 @@ app.post('/favorites',function(req,res){
         }
     })
     
+});
+
+app.delete('/favorites/:id',function(req,res){
+    FavoriteRecipe.findByIdAndRemove(req.params.id, function(err){
+        if(err){
+            res.redirect("/")
+        }else{
+            res.end();
+        }
+    });
 })
 
 // PANTRY ROUTES
