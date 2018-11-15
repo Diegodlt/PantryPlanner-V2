@@ -224,7 +224,7 @@ input[class="search"]{
 .favorite-item{
     position: relative;
     height: 400px;
-    width: 80%;
+    width: 60%;
     box-shadow: 0 0 2px #aaa;
     margin: 30px auto 0 auto;
 }
@@ -245,7 +245,7 @@ input[class="search"]{
 }
 
 .favorite-item ul{
-    width: 65%;
+    width: 50%;
     float: right;
 }
 
@@ -253,4 +253,17 @@ input[class="search"]{
     position: absolute;
     right: 20px;
     bottom: 5px;
+}
+
+
+@media (max-width: 1200px) {
+    .favorite-item{
+        width: 80%
+    }
+}
+
+@media (max-width: 900px){
+    .favorite-item{
+        width: 100%;
+    }
 }
