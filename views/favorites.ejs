@@ -14,7 +14,6 @@
                    <% }); %>
                 </ul>
                 <div class = "item-buttons">
-                    <a href="<%= item.url %>" target="_blank">View instructions</a>
                     <button type="button" onclick="window.open('<%=item.url%>', '_blank')">View Instructions</button>
                     <button type="button" class = "<%=item.id%>" onclick="addFavoriteToGroceries(this)">Add to Groceries</button>
                     <button type="button" class="<%=item.id%>" onclick="removeItemFromFavorites(this)">Remove</button>
