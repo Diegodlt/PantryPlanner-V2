@@ -1,0 +1,55 @@
+<% include ../partials/header.ejs %>
+
+    <h1>Pantry</h1>
+    
+    
+    <form id="pantryItem-form">
+        <input type ='text' name ='item' placeholder = "Item">
+        <input type = 'text' name='amount' placeholder='Amount'>
+        
+        <select name="unit" form = "pantryItem-form">
+            <option value="oz">oz</option>
+            <option value="ct">ct</option>
+            <option value="fl oz">fl oz</option>
+            <option value="cup">cup</option>
+            <option value="qt">qt</option>
+            <option value="gal">gal</option>
+            <option value="mL">mL</option>
+            <option value="L">L</option>
+        </select>
+        
+        <input type ='submit' value='Create'>
+    </form>
+
+    <div class="pantry-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Amount</th>
+                    <th>Unit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if(foodItems !== null){ %>
+                       <% foodItems.forEach(function(foodItem){ %>
+                       
+                            <tr class="item-row <%= foodItem.id %>">
+                                <td><%= foodItem.item %></td>
+                                <td><%= foodItem.amount %></td>
+                                <td><%= foodItem.unit %></td>
+                            </tr>
+                            <tr class= "hidden-row <%= foodItem.id %>">
+                                <td></td>
+                                <td><button class= "<%= foodItem.id %>" onclick="deleteItemFromPantry(this)">UPDATE</button></td>
+                                <td><button class = "<%=foodItem.id %>">DELETE</button></td>
+                                
+                            </tr>
+                        
+                         <%  });  %>
+                    <% } %>
+             </tbody>
+         </table>
+    </div>
+
+<% include ../partials/footer.ejs %>

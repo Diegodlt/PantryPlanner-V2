@@ -1,0 +1,11 @@
+<% include ./partials/header.ejs %>
+
+    <h1><%= recipe.label %></h1>
+    <image href = "<%= recipe.image %>">
+    <ul>
+       <% recipe.ingredients.forEach( ingredient => { %>
+            <li><%= ingredient %></li>
+          <%  });  %>
+    </ul>
+
+<% include ./partials/footer.ejs %>

@@ -1,0 +1,23 @@
+<% include ./partials/header.ejs %>
+
+    <h1>This is the favorites page</h1>
+    
+    <% favoriteItems.forEach(function(item){ %>
+    
+        <div class="favorite-item">
+            <h3><%= item.label %></h3>
+            <image src = "<%= item.image %>"/> 
+            <ul>
+               <% item.ingredients.forEach(ingredient =>{ %>
+                    <li><%= ingredient %></li>
+               <% }); %>
+            </ul>
+            <div class = "item-buttons">
+                <a href="<%= item.url %>" target="_blank">View instructions</a>
+                <button type="button" onclick="window.open('<%=item.url%>', '_blank')">View Instructions</button>
+            </div>
+        </div>
+        
+    <% }); %>
+
+<% include ./partials/footer.ejs %>
