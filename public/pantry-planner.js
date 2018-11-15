@@ -118,10 +118,28 @@ function deleteItemFromPantry(pantryItem){
     $("."+itemId).fadeOut(10, function(){ $(this).remove();});
     $.ajax({
             type: "DELETE",
-            url: "/pantry/"+itemId,
+            url: "/pantry/"+itemId
             });
     
     
 
     
+}
+
+
+function addFavoriteToGroceries(recipeItem){
+    $.ajax({
+        type: "POST"
+    })
+}
+
+
+function removeItemFromFavorites(recipeItem){
+    let itemId = recipeItem.className;
+    $.ajax({
+        type: "DELETE",
+        url: "/favorites/" + itemId
+    }).done(function(){
+        $(`.${itemId}`).remove();
+    })
 }
