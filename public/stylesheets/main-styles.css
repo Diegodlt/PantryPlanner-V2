@@ -1,5 +1,6 @@
 html{
     overflow-y: scroll;
+    height: 100%;
 }
 
 body {
@@ -244,7 +245,7 @@ input[class="search"]{
 }
 
 .favorite-item ul{
-    width: 50%;
+    width: 40%;
     float: right;
     margin-right: 10%;
 }
