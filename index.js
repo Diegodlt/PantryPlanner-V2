@@ -2,6 +2,7 @@ let express = require('express'),
     mongoose = require('mongoose'),
     bodyParser = require("body-parser"),
     request = require('request'),
+    requestPromise = require('request-promise'),
     pantryRoutes = require('./routes/pantry.js'),
     favoritesRoutes = require('./routes/favorites.js');
     
@@ -14,6 +15,14 @@ app.use(express.static(__dirname + "/public"));
 mongoose.connect("mongodb://localhost:27017/pantry-planner", {useNewUrlParser: true});
 //mongoose.connect(process.env.DATABASEURL, {useNewUrlParser: true});
 app.use(bodyParser.urlencoded({extended: true}));
+
+
+let cartItemSchema = {
+    label: String,
+    foodItems: [{foodItem:String}]
+}
+
+let CartItem = mongoose.model("CartItem", cartItemSchema);
 
 
 app.get("/", function(req,res){
@@ -53,6 +62,68 @@ app.post("/search",function(req,res){
     
 });
 
+app.post("/cart", function(req,res){
+    
+    let label = req.body.recipeLabel;
+    let ingredients = req.body.parsedIngredients;
+    
+    let cartItem ={
+        label: label,
+        foodItems: []
+    };
+    
+    let cartItemId;
+    
+     CartItem.create(cartItem, function(err, newItem){
+        if(err){
+            res.redirect("/favorites")
+        }else{
+            cartItemId = newItem.id;
+        }
+    });
+    
+   
+    
+    ingredients.forEach((ingredient)=> {
+        let options = {
+            uri : 'https://api.edamam.com/api/food-database/parser',
+            qs : {
+                ingr: ingredient,
+                app_id: "0ec2c75c",
+                app_key: "8ed44a101b9f481e897c3a03b0b8ccd2"
+            },
+            headers :{
+                'User-Agent' : 'Request-Promise'
+            },
+            json : true
+        };
+        
+        requestPromise(options)
+            .then(function(response){
+                CartItem.findById(cartItemId,function(err,item){
+                    if(err){
+                        console.log("error")
+                    }else{
+                        console.log(item);
+                        let foodItem = response.hints[0].food.label;
+                        item.foodItems.push({foodItem: foodItem});
+                    }
+                    item.save(function(err,savedItem){
+                        if(err){
+                            console.log(err);
+                        }else {
+                            console.log(savedItem);
+                        }
+                    });
+                });
+            });
+        
+    });
+    
+    
+   
+});
+
 
 //  FAVORITES ROUTES
 app.use("/favorites", favoritesRoutes);
@@ -67,4 +138,4 @@ app.use("/pantry",pantryRoutes);
 
 app.listen(process.env.PORT, process.env.IP, function(){
     console.log("server running....");
-})
+});
