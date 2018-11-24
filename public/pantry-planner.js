@@ -127,10 +127,22 @@ function deleteItemFromPantry(pantryItem){
 }
 
 
-function addFavoriteToGroceries(recipeItem){
+function addFavoriteToCart(recipeItem){
+    
+    let recipeLabel = $(`.favorite-item.${recipeItem.className}`).find("h3").text();
+    let recipeIngredients = $(`.favorite-item.${recipeItem.className}`).find("li");
+    let parsedIngredients = []
+    
+    for(let i = 0; i < recipeIngredients.length; i++){
+        parsedIngredients.unshift(recipeIngredients[i].innerText);
+    }
     $.ajax({
-        type: "POST"
-    })
+        type: "POST",
+        url: "/cart",
+        data: { recipeLabel, parsedIngredients}
+    }).done(function(){
+        
+    });
 }
 
 
