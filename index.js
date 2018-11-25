@@ -4,6 +4,7 @@ let express = require('express'),
     request = require('request'),
     requestPromise = require('request-promise'),
     pantryRoutes = require('./routes/pantry.js'),
+    FoodItem = require('./models/foodItem'),
     favoritesRoutes = require('./routes/favorites.js');
     
     
@@ -61,6 +62,22 @@ app.post("/search",function(req,res){
     });
     
 });
+
+// CART ROUTES
+
+
+app.get("/cart",function(req,res){
+    
+  
+    CartItem.find({}, function(err, recipes){
+        if(err){
+            res.redirect("/");
+        }else{
+            res.render("cart/cart",{recipes: recipes});
+        }
+    })
+})
+
 
 app.post("/cart", function(req,res){
     
@@ -122,6 +139,16 @@ app.post("/cart", function(req,res){
     
     
    
+});
+
+app.delete("/cart/:id",function(req,res){
+    CartItem.findByIdAndRemove(req.params.id,function(err,deletedItem){
+        if(err){
+            res.redirect("/");
+        }else{
+            res.end();
+        }
+    });
 });
 
 
