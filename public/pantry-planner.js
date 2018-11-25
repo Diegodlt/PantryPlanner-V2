@@ -63,6 +63,7 @@ function viewIndividualSearchItem(individualRecipe){
                 `<div class='backdrop'>
                   <div class = 'modal'>
                         <div class = "modal-contents">
+                            <span onclick="removeModal()">x</span>
                             <h3>${foundRecipe.label}</h3>
                             <image src ="${foundRecipe.image}">
                             <ul>
@@ -75,6 +76,12 @@ function viewIndividualSearchItem(individualRecipe){
                   </div>
                  </div>`);
    
+}
+
+function removeModal(){
+    $(".modal").remove();
+    $(".backdrop").remove();
+    
 }
 
 function addItemToFavorites(recipe){
@@ -124,6 +131,20 @@ function deleteItemFromPantry(pantryItem){
     
 
     
+}
+
+$(".cartItem").click(function(){
+    
+    $(this).toggleClass("strikeThrough")
+});
+
+function deleteRecipeFromCart(recipe){
+    let recipeId = recipe.parentElement.parentElement.id;
+    $(`#${recipeId}`).fadeOut(10, function(){$(this).remove()});
+    $.ajax({
+            type: "DELETE",
+            url: "/cart/"+recipeId
+            });
 }
 
 
