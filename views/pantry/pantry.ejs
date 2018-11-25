@@ -31,18 +31,18 @@
                 </tr>
             </thead>
             <tbody>
-                <% if(foodItems !== null){ %>
-                       <% foodItems.forEach(function(foodItem){ %>
+                <% if(pantryItems !== null){ %>
+                       <% pantryItems.forEach(function(pantryItem){ %>
                        
-                            <tr class="item-row <%= foodItem.id %>">
-                                <td><%= foodItem.item %></td>
-                                <td><%= foodItem.amount %></td>
-                                <td><%= foodItem.unit %></td>
+                            <tr class="item-row <%= pantryItem.id %>">
+                                <td><%= pantryItem.item %></td>
+                                <td><%= pantryItem.amount %></td>
+                                <td><%= pantryItem.unit %></td>
                             </tr>
-                            <tr class= "hidden-row <%= foodItem.id %>">
+                            <tr class= "hidden-row <%= pantryItem.id %>">
                                 <td></td>
-                                <td><button class= "<%= foodItem.id %>" onclick="deleteItemFromPantry(this)">UPDATE</button></td>
-                                <td><button class = "<%=foodItem.id %>">DELETE</button></td>
+                                <td><button class= "<%= pantryItem.id %>" onclick="deleteItemFromPantry(this)">UPDATE</button></td>
+                                <td><button class = "<%=pantryItem.id %>">DELETE</button></td>
                                 
                             </tr>
                         

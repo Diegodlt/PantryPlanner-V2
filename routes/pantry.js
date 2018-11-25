@@ -7,11 +7,11 @@ let express = require('express'),
 //*** INDEX ROUTE ***//
 // This will show all of the pantry items currently in the user's pantry
 router.get("/", function(req, res){
-    FoodItem.find({}, function(err,foodItems){
+    FoodItem.find({}, function(err,pantryItems){
         if(err){
             res.redirect("/");
         }else{
-            res.render("pantry/pantry", {foodItems: foodItems})
+            res.render("pantry/pantry", {pantryItems: pantryItems})
         }
     })
 });

@@ -179,6 +179,13 @@ input[class="search"]{
     z-index: 30; 
 }
 
+.modal-contents span{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    line-height: 0;
+}
+
 .modal-contents ul{
     width: 390px;
     height: 350px;
@@ -186,7 +193,7 @@ input[class="search"]{
     text-align: left;
     float: right;
     overflow-y: scroll;
-    overflow: hidden;
+    /*overflow: hidden;*/
 
 }
 
@@ -267,4 +274,38 @@ input[class="search"]{
     .favorite-item{
         width: 100%;
     }
+}
+
+
+/************************************
+
+            CART PAGE
+
+*************************************/
+
+.recipeItems-container{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: auto;
+}
+
+
+.recipeItems-container div{
+    flex-basis: 400px;
+}
+
+.recipeItems-container ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+
+.strikeThrough{
+    color: gray;
+    text-decoration: line-through;
+}
+
+.cartItem:hover{
+    cursor: pointer;
 }
