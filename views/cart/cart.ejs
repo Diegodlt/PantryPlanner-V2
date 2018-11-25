@@ -1,0 +1,21 @@
+<% include ../partials/header.ejs %>
+
+    <% recipes.forEach((recipe) => { %>
+        <div class="recipeItems-container" id="<%=recipe.id%>">
+            <div class="foodItem-label">
+                <h2><%= recipe.label %></h2>
+            </div>
+            <div class="foodItem-list">
+                <ul>
+                   <% recipe.foodItems.forEach((item) => { %>
+                        <li class = "cartItem"><%= item.foodItem.charAt(0).toUpperCase() + item.foodItem.slice(1) %></li>
+                    <% }); %>
+                </ul>
+                <button onclick="deleteRecipeFromCart(this)">Remove Recipe</button>
+            </div>
+            
+        </div>
+    <% }); %>
+
+
+<% include ../partials/footer.ejs %>
