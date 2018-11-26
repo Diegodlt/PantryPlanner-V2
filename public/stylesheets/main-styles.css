@@ -7,8 +7,47 @@ body {
     position: relative;
     margin:0;
     padding-bottom: 50px;
+    padding-top: 100px;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 1px;
+    
+}
+li{
+    padding: 1px;
 }
 
+.navbar {
+    font-family: sans-serif;
+    z-index: 10;
+    list-style-type: none;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.navbar li{
+    float: left;
+}
+
+.navbar li a{
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.navbar li a:hover{
+    background-color: #111;
+}
+
+.navbar span{
+    float: right;
+}
 /***************************************
 
                 PANTRY PAGE
@@ -17,38 +56,39 @@ body {
 
 .pantry-container{
     margin: auto;
+    border: 1px solid black;
+    width: 485px;
 }
 
-/* This will be used if I decide to make items into divs
-/*.pantry-items {*/
-/*    width: 200px;*/
-/*    border: 2px solid black;*/
-/*}*/
-
-table {
-    border-collapse: collapse;
-    /*width: 600px;*/
-    text-align: left;
-    margin: 20px auto;
+.pantry-container .row{
+    border: 1px solid gray;
+    padding: 5px;
 }
 
-table, th, td {
-   border: 1px solid black;
+.pantry-container span{
+    width: 0;
+    opacity: 0;
+    transition: .2s linear;
 }
 
-
-th,td{
-    padding: 10px;
-    width: 100px;
+.pantry-container .row:hover span{
+    width: 20px;
+    opacity: 1;
 }
 
-tbody tr:hover{
-    background-color: #eee;
+.pantry-container .column{
+    width: 138px;
+    display: inline-block;
+    padding: 5px;
+    /*border: 1px solid blue;*/
 }
 
 #pantryItem-form{
     margin: auto;
     width: 300px;
+    border: 1px solid gray;
+    padding: 20px;
+    margin-bottom: 50px;
 }
 
 #pantryItem-form input,select{
@@ -339,5 +379,7 @@ input[class="search"]{
     width: 200px;
     height: 100%;
     position: fixed;
+    top:40px;
+    z-index: -1;
     background-color: #ccc;
 }

@@ -22,34 +22,24 @@
     </form>
 
     <div class="pantry-container">
-        <table>
-            <thead>
-                <tr>
-                    <th>Item</th>
-                    <th>Amount</th>
-                    <th>Unit</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% if(pantryItems !== null){ %>
-                       <% pantryItems.forEach(function(pantryItem){ %>
-                       
-                            <tr class="item-row <%= pantryItem.id %>">
-                                <td><%= pantryItem.item %></td>
-                                <td><%= pantryItem.amount %></td>
-                                <td><%= pantryItem.unit %></td>
-                            </tr>
-                            <tr class= "hidden-row <%= pantryItem.id %>">
-                                <td></td>
-                                <td><button class= "<%= pantryItem.id %>" onclick="deleteItemFromPantry(this)">UPDATE</button></td>
-                                <td><button class = "<%=pantryItem.id %>">DELETE</button></td>
-                                
-                            </tr>
-                        
-                         <%  });  %>
-                    <% } %>
-             </tbody>
-         </table>
+        <div class = "row">
+            <div class="column">Item</div>
+            <div class="column">Amount</div>
+            <div class="column">Unit</div>
+        </div>
+
+    <% if(pantryItems !== null){ %>
+        
+            <% pantryItems.forEach(function(pantryItem){ %>
+                <div class = "row" >
+                    <span id= "<%=pantryItem.id%>" >x</span>
+                    <div class="column"><%=pantryItem.item%></div>
+                    <div class="column"><%=pantryItem.amount%></div>
+                    <div class="column"><%=pantryItem.unit%></div>
+                </div>
+            <%  });  %>
+    <% } %>
+
     </div>
 
 <% include ../partials/footer.ejs %>

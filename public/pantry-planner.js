@@ -101,40 +101,34 @@ function addItemToFavorites(recipe){
 function addPantryItem(responseText){
     
     let newItem = 
-        `<tr>
-            <td>${responseText.item}</td>
-            <td>${responseText.amount}</td> 
-            <td>${responseText.unit}</td>
+        ` <div class = "row" >
+            <span id= "${responseText._id}" >x</span>
+            <div class="column">${responseText.item}</div>
+            <div class="column">${responseText.amount}</div>
+            <div class="column">${responseText.unit}</div>
+        </div>`;
+
             
-        </tr>
-        <tr>
-            <td> 
-               <button class= ${responseText.id} onclick ="deleteItemFromPantry(this)">UPDATE</button>
-            </td>
-        </tr>`;
-            
-        
-    
-    $(".pantry-container tbody").append(newItem);
+    $(".pantry-container").append(newItem);
     
 }
 
 
-
-function deleteItemFromPantry(pantryItem){
+// Function to delete an item from pantry
+$(".pantry-container").on("click","span", function(event){
     
-    let itemId = pantryItem.className;
-    $("."+itemId).fadeOut(10, function(){ $(this).remove();});
+    let itemId = $(this)[0].id;
     $.ajax({
-            type: "DELETE",
-            url: "/pantry/"+itemId
-            });
+        type: "DELETE",
+        url: "/pantry/"+itemId
+    });
+            
+    $(this).parent().fadeOut(200,function(){
+        $(this).remove();
+    })
+    event.stopPropagation();
     
-    
-
-    
-}
-
+})
 
 $(".cartItem").click(function(){
     
