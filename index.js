@@ -3,6 +3,7 @@ let express = require('express'),
     bodyParser = require("body-parser"),
     request = require('request'),
     requestPromise = require('request-promise'),
+    async = require('async'),
     pantryRoutes = require('./routes/pantry.js'),
     FoodItem = require('./models/foodItem'),
     favoritesRoutes = require('./routes/favorites.js');
@@ -67,16 +68,34 @@ app.post("/search",function(req,res){
 
 
 app.get("/cart",function(req,res){
-    
-  
-    CartItem.find({}, function(err, recipes){
-        if(err){
-            res.redirect("/");
-        }else{
-            res.render("cart/cart",{recipes: recipes});
+    let data = {};
+    async.parallel([
+        function(callback){
+            CartItem.find({}, function(err,item){
+                if(err){
+                    return callback(err);
+                }
+                data.recipes = item;
+                callback();
+            });
+        },
+        function(callback){
+            FoodItem.find({}, function(err,item){
+                if(err){
+                    return callback(err);
+                }
+                data.foodItems = item;
+                callback();
+            });
         }
-    })
-})
+    ], function(err){
+        if(err){
+            console.log("error");
+        }
+        res.render("cart/cart", {recipes:data.recipes, pantryItems: data.foodItems});
+    }
+    );
+});
 
 
 app.post("/cart", function(req,res){
