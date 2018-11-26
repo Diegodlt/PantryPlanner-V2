@@ -1,9 +1,32 @@
 <% include ../partials/header.ejs %>
 
-    <h1>Pantry</h1>
+    <h1>Digital Pantry</h1>
     
     
+
+    <div class="pantry-container">
+        <div class = "row">
+            <div class="column">Item</div>
+            <div class="column">Amount</div>
+            <div class="column">Unit</div>
+        </div>
+
+    <% if(pantryItems !== null){ %>
+        
+            <% pantryItems.forEach(function(pantryItem){ %>
+                <div class = "row" >
+                    <span id= "<%=pantryItem.id%>" ><i class='fas fa-times'></i></span>
+                    <div class="column"><%=pantryItem.item%></div>
+                    <div class="column"><%=pantryItem.amount%></div>
+                    <div class="column"><%=pantryItem.unit%></div>
+                </div>
+            <%  });  %>
+    <% } %>
+
+    </div>
+
     <form id="pantryItem-form">
+        <h3>Add To Pantry</h3>
         <input type ='text' name ='item' placeholder = "Item">
         <input type = 'text' name='amount' placeholder='Amount'>
         
@@ -20,26 +43,6 @@
         
         <input type ='submit' value='Create'>
     </form>
-
-    <div class="pantry-container">
-        <div class = "row">
-            <div class="column">Item</div>
-            <div class="column">Amount</div>
-            <div class="column">Unit</div>
-        </div>
-
-    <% if(pantryItems !== null){ %>
-        
-            <% pantryItems.forEach(function(pantryItem){ %>
-                <div class = "row" >
-                    <span id= "<%=pantryItem.id%>" >x</span>
-                    <div class="column"><%=pantryItem.item%></div>
-                    <div class="column"><%=pantryItem.amount%></div>
-                    <div class="column"><%=pantryItem.unit%></div>
-                </div>
-            <%  });  %>
-    <% } %>
-
-    </div>
-
+    
+    
 <% include ../partials/footer.ejs %>

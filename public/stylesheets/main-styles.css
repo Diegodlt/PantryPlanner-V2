@@ -12,6 +12,12 @@ body {
     letter-spacing: 1px;
     
 }
+
+h1{
+    text-align: center;
+    margin-bottom: 50px;
+}
+
 li{
     padding: 1px;
 }
@@ -66,6 +72,7 @@ li{
 }
 
 .pantry-container span{
+    color: #f44336;
     width: 0;
     opacity: 0;
     transition: .2s linear;
@@ -74,6 +81,7 @@ li{
 .pantry-container .row:hover span{
     width: 20px;
     opacity: 1;
+    cursor: pointer;
 }
 
 .pantry-container .column{
@@ -88,7 +96,8 @@ li{
     width: 300px;
     border: 1px solid gray;
     padding: 20px;
-    margin-bottom: 50px;
+    margin-top: 50px;
+    box-shadow: 0 2px 5px #aaa;
 }
 
 #pantryItem-form input,select{
@@ -97,6 +106,37 @@ li{
     margin: 5px 0;
 }
 
+#pantryItem-form select{
+    width: 304px;
+}
+
+#pantryItem-form input[type="submit"]{
+    color: #28a745;
+    background-color: inherit;
+    border: 1px solid #28a745;
+    font-size: 15px;
+    margin-top: 10px;
+    padding: 5px;
+    width: 304px;
+    border-radius: 5px;
+    outline:none;
+}
+
+#pantryItem-form input[type="submit"]:hover{
+    color: white;
+    background-color: #28a745 ;
+    border: 1px solid #28a745;
+}
+
+#pantryItem-form input[type="submit"]:active{
+    color: white;
+      background-color: #1d7531 ;
+}
+
+#pantryItem-form h3{
+    text-align: center;
+    margin-top: 0;
+}
 
 /*.hidden-row{*/
 /*    display: none;*/
@@ -210,6 +250,7 @@ input[class="search"]{
     border-radius: 5px;
     box-shadow: 0 1px 3px #aaa;
     text-align: center;
+    padding: 10px;
     z-index: 20; /* 1px higher than the overlay layer */
 }
 
@@ -300,7 +341,7 @@ input[class="search"]{
 .favorite-item .item-buttons{
     position: absolute;
     right: 20px;
-    bottom: 5px;
+    bottom: 15px;
 }
 
 
@@ -351,11 +392,12 @@ input[class="search"]{
 
 .strikeThrough{
     color: gray;
+    background-color: #ddd!important;
     text-decoration: line-through;
 }
 
 .cartItem{
-    background-color: #ddd;
+    background-color: rgba(239,242,10,0.15);
     padding: 5px;
     border: 1px solid #aaa;
     
@@ -365,7 +407,7 @@ input[class="search"]{
 }
 
 .cartItem-pantry{
-    background-color: green;
+    background-color: rgba(18,207,10, 0.15);
     padding: 5px;
     border: 1px solid #aaa;
 }
@@ -381,5 +423,15 @@ input[class="search"]{
     position: fixed;
     top:40px;
     z-index: -1;
-    background-color: #ccc;
+    /*border-right: 1px solid trasnparent;*/
+    box-shadow: 2px 0 2px #aaa;
+}
+
+.sidebar h3{
+    text-align: center;
+    padding: 10px 0;
+}
+
+.sidebar p{
+    padding-left: 5px;
 }

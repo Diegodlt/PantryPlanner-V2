@@ -63,7 +63,7 @@ function viewIndividualSearchItem(individualRecipe){
                 `<div class='backdrop'>
                   <div class = 'modal'>
                         <div class = "modal-contents">
-                            <span onclick="removeModal()">x</span>
+                            <span onclick="removeModal()"><i class='fas fa-times'></i></span>
                             <h3>${foundRecipe.label}</h3>
                             <div>
                                 <image src ="${foundRecipe.image}">
@@ -102,7 +102,7 @@ function addPantryItem(responseText){
     
     let newItem = 
         ` <div class = "row" >
-            <span id= "${responseText._id}" >x</span>
+            <span id= "${responseText._id}" ><i class='fas fa-times'></i></span>
             <div class="column">${responseText.item}</div>
             <div class="column">${responseText.amount}</div>
             <div class="column">${responseText.unit}</div>
@@ -110,6 +110,7 @@ function addPantryItem(responseText){
 
             
     $(".pantry-container").append(newItem);
+    
     
 }
 

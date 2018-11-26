@@ -1,6 +1,7 @@
 <% include ../partials/header.ejs %>
 
     <div class="sidebar">
+        <h3>Pantry Items</h3>
         <% pantryItems.forEach((pantryItem) => { %>
             <p><%=pantryItem.item%></p>
         <% }); %>
