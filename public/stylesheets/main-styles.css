@@ -159,7 +159,7 @@ input[class="search"]{
 
 .modal{
     width: 700px;
-    height: 500px;
+    height: auto;
     line-height: 200px;
     position: fixed;
     top: 50%; 
@@ -187,18 +187,17 @@ input[class="search"]{
 }
 
 .modal-contents ul{
-    width: 390px;
-    height: 350px;
+    width: 370px;
     line-height: normal;
     text-align: left;
     float: right;
-    overflow-y: scroll;
-    /*overflow: hidden;*/
 
 }
 
-.modal-contents li{
-   
+.modal-contents div{
+   float: left;
+   width: 280px;
+   margin-bottom: 20px;
 }
 
 .modal-contents img{
@@ -255,6 +254,7 @@ input[class="search"]{
     width: 40%;
     float: right;
     margin-right: 10%;
+
 }
 
 .favorite-item .item-buttons{
@@ -283,21 +283,29 @@ input[class="search"]{
 
 *************************************/
 
+.main-container{
+   text-align: center;
+}
+
 .recipeItems-container{
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin: auto;
+    margin: 0 auto 50px auto;
+    width: 50%;
+    border-bottom: 1px solid gray;
+
+    
 }
 
-
-.recipeItems-container div{
-    flex-basis: 400px;
-}
 
 .recipeItems-container ul {
     list-style-type: none;
     padding: 0;
+    text-align: left;
+    
+}
+
+.recipeItems-container button{
+    text-align: left;
+    margin-bottom: 10px;
 }
 
 
@@ -306,6 +314,30 @@ input[class="search"]{
     text-decoration: line-through;
 }
 
+.cartItem{
+    background-color: #ddd;
+    padding: 5px;
+    border: 1px solid #aaa;
+    
+}
 .cartItem:hover{
     cursor: pointer;
+}
+
+.cartItem-pantry{
+    background-color: green;
+    padding: 5px;
+    border: 1px solid #aaa;
+}
+
+.cartItem-pantry:hover{
+    cursor: pointer;
+}
+
+
+.sidebar{
+    width: 200px;
+    height: 100%;
+    position: fixed;
+    background-color: #ccc;
 }

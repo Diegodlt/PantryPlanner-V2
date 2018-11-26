@@ -12,7 +12,7 @@ let formOptions = {
     dataType: 'json'
 }
 
-// Function to 
+// Function that will allow a user to search recipes
 $(".search").keypress(function(event){
  
     if($(this).val() != ""){
@@ -45,7 +45,7 @@ $(".search").keypress(function(event){
     
 });
 
-
+// function to make new item in pantry
 $("#pantryItem-form").ajaxForm(formOptions);
 
 
@@ -65,13 +65,15 @@ function viewIndividualSearchItem(individualRecipe){
                         <div class = "modal-contents">
                             <span onclick="removeModal()">x</span>
                             <h3>${foundRecipe.label}</h3>
-                            <image src ="${foundRecipe.image}">
+                            <div>
+                                <image src ="${foundRecipe.image}">
+                                <button class="${foundRecipe.id}" onclick = "addItemToFavorites(this)">Add to Favorites</button>
+                                <button class="${foundRecipe.id}" onclick = "addItemToGroceries(this)">Add to Groceries</button>
+                                <button type="button" onclick="window.open('${foundRecipe.url}', '_blank')">View Instructions</button>
+                            </div>
                             <ul>
                                 ${ingredients}
                             </ul>
-                            <button class="${foundRecipe.id}" onclick = "addItemToFavorites(this)">Add to Favorites</button>
-                            <button class="${foundRecipe.id}" onclick = "addItemToGroceries(this)">Add to Groceries</button>
-                            <button type="button" onclick="window.open('${foundRecipe.url}', '_blank')">View Instructions</button>
                         </div>
                   </div>
                  </div>`);
@@ -133,13 +135,21 @@ function deleteItemFromPantry(pantryItem){
     
 }
 
+
 $(".cartItem").click(function(){
     
     $(this).toggleClass("strikeThrough")
 });
 
+$(".cartItem-pantry").click(function(){
+    
+    $(this).toggleClass("strikeThrough")
+});
+
+
+
 function deleteRecipeFromCart(recipe){
-    let recipeId = recipe.parentElement.parentElement.id;
+    let recipeId = recipe.parentElement.id;
     $(`#${recipeId}`).fadeOut(10, function(){$(this).remove()});
     $.ajax({
             type: "DELETE",

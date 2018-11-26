@@ -1,21 +1,31 @@
 <% include ../partials/header.ejs %>
 
-    <% recipes.forEach((recipe) => { %>
-        <div class="recipeItems-container" id="<%=recipe.id%>">
-            <div class="foodItem-label">
-                <h2><%= recipe.label %></h2>
-            </div>
-            <div class="foodItem-list">
+    <div class="sidebar">
+        <% pantryItems.forEach((pantryItem) => { %>
+            <p><%=pantryItem.item%></p>
+        <% }); %>
+    </div>
+
+    <div class = "main-container">
+        <% recipes.forEach((recipe) => { %>
+            <div class="recipeItems-container" id="<%=recipe.id%>">
+                <h3><%= recipe.label %></h3>
                 <ul>
-                   <% recipe.foodItems.forEach((item) => { %>
-                        <li class = "cartItem"><%= item.foodItem.charAt(0).toUpperCase() + item.foodItem.slice(1) %></li>
+                   <% recipe.foodItems.forEach((recipeItem) => { %>
+                        <% let className = "cartItem"; %>
+                            <% pantryItems.forEach((pantryItem) => { %>
+                                <% if(recipeItem.foodItem.toLowerCase().includes(pantryItem.item.toLowerCase())){ %>
+                                    <% className ="cartItem-pantry"; %>
+                                    <% return; %>
+                                    <% } %>
+                            <% }); %>
+                        <li class = <%= className %>><%= recipeItem.foodItem.charAt(0).toUpperCase() + recipeItem.foodItem.slice(1) %></li>
                     <% }); %>
                 </ul>
                 <button onclick="deleteRecipeFromCart(this)">Remove Recipe</button>
             </div>
-            
-        </div>
-    <% }); %>
+        <% }); %>
+    </div>
 
 
 <% include ../partials/footer.ejs %>
