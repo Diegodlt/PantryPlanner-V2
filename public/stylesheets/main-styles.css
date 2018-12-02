@@ -16,6 +16,8 @@ body {
 h1{
     text-align: center;
     margin-bottom: 50px;
+    font-family: 'Cookie', cursive;
+    font-size: 2em;
 }
 
 li{
@@ -169,7 +171,7 @@ input[class="search"]{
     width: 400px;
     border-radius: 30px;
     border:none;
-    box-shadow: 0 1px 5px #ccc;
+    box-shadow: 0 1px 5px #555;
     background-color: #fcfcfc;
     outline: none;
     font-size: 1.3em;
@@ -179,6 +181,22 @@ input[class="search"]{
     margin: auto;
     
 }
+
+.home-title{
+    font-family: 'Cookie', cursive;
+    width: 50%;
+    margin: 50px auto;
+    font-size: 5em;
+    background-image: radial-gradient(rgba(255,255,255, 0.5) 30%, transparent, transparent);
+    /*color: white;*/
+    
+    
+}
+.search-title{
+    font-family: 'Cookie', cursive;
+    margin-bottom: 20px;
+}
+
 .search-results{
     margin: 40px 5%;
     display: flex;
@@ -192,7 +210,8 @@ input[class="search"]{
     width: 250px;
     text-align: center;
     border-radius: 2px;
-    box-shadow: 0 0 2px #aaa;
+    background-color: white;
+    box-shadow: 0 0 2px #777;
     font-family: 'Roboto', sans-serif;
     margin: 10px 10px;
     overflow-x: hidden;
@@ -212,6 +231,16 @@ input[class="search"]{
    cursor: pointer;
 }
 
+
+.search-img{
+  top: -1000px;
+  z-index: -10;
+  position: absolute;
+  width: 100%;
+    -webkit-mask-image:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,.8)), to(rgba(0,0,0,0)));
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
+    
+}
 
 
 .search-results img{
@@ -381,6 +410,16 @@ input[class="search"]{
     list-style-type: none;
     padding: 0;
     text-align: left;
+    
+}
+
+.pantry-img{
+  top: -300px;
+  z-index: -10;
+  position: absolute;
+  width: 100%;
+    -webkit-mask-image:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,.8)), to(rgba(0,0,0,0)));
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
     
 }
 
